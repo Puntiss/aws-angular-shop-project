@@ -21,7 +21,7 @@ If you want to try live code, visit the [website](http://angular-aws-shop.s3-web
 
 **1. Configure AWS Lambda Functions:**
    
-- Follow the detailed instructions provided in the GitHub projects linked above to configure the two AWS Lambda functions in your AWS account.
+- Follow the detailed instructions in the GitHub projects linked above to configure the two AWS Lambda functions in your account.
 
 **3. Obtain API Gateway Link:**
    
@@ -37,6 +37,31 @@ If you want to try live code, visit the [website](http://angular-aws-shop.s3-web
 
 **6. See result**
 - Navigate to `http://localhost:4200/` in your browser to see the result.
-   
+
+**7. Build Angular**
+- To transform the Angular project into a static website use the command `ng build`
+
+**8. Host on AWS S3 Bucket**
+- On your AWS account create a new S3 Bucket, uncheck `BLOCK PUBLIC ACCESS` so that the public can access it
+- Navigate to permission and add the following permission:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+   {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::BUCKET_NAME/*"
+        }
+    ]
+}
+```
+- Navigate to properties and enable `Static website hosting`
+  
+**9. Custom domain**
+- [Follow the guide](https://dev.to/aws-builders/how-to-deploy-a-static-website-on-amazon-s3-with-route-53-3o6p)
+
 Happy coding!
 
